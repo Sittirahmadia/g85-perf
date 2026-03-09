@@ -148,12 +148,11 @@ public class G85PerfMod implements ClientModInitializer {
             LOGGER.info("[G85Perf] Simulation distance → 4");
         }
 
-        // Disable clouds (very expensive on Mali-G52 + VirGL)
-        // In MC 1.21, clouds are controlled via cloudRenderMode option directly
+        // Disable clouds via accessor mixin (Mali-G52 benefit)
         if (disableClouds) {
-            client.options.cloudRenderMode.setValue(
-                net.minecraft.client.option.CloudRenderMode.OFF
-            );
+            ((dev.g85perf.mixin.GameOptionsAccessor) client.options)
+                .getCloudRenderMode()
+                .setValue(net.minecraft.client.option.CloudRenderMode.OFF);
             LOGGER.info("[G85Perf] Clouds disabled");
         }
 
