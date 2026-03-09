@@ -149,8 +149,9 @@ public class G85PerfMod implements ClientModInitializer {
         }
 
         // Disable clouds (very expensive on Mali-G52 + VirGL)
+        // In MC 1.21, clouds are controlled via cloudRenderMode option directly
         if (disableClouds) {
-            client.options.getCloudRenderModeOption().setValue(
+            client.options.cloudRenderMode.setValue(
                 net.minecraft.client.option.CloudRenderMode.OFF
             );
             LOGGER.info("[G85Perf] Clouds disabled");

@@ -42,6 +42,5 @@ public class MemoryLeakMixin {
     private void onDisconnect(CallbackInfo ci) {
         G85PerfMod.LOGGER.info("[G85Perf] Disconnected — running GC cleanup");
         System.gc();
-        System.runFinalization();
     }
 }
